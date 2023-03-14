@@ -27,6 +27,7 @@ def about():
 
 @app.route('/properties/create')
 def create():
+    myform = MyForm()
     if myform.validate_on_submit():
             title = myform.title.data
             desc = myform.desc.data

@@ -50,12 +50,12 @@ def create():
                                    location=location)
 
 @app.route('/properties')
-def something():
-    pass
+def viewproperties():
+    return render_template('viewproperties.html')
 
 @app.route('/properties/<propertyid>')
-def somethingelse():
-    pass
+def viewpropertyid():
+    return render_template('viewpropertyid.html')
 
 ###
 # The functions below should be applicable to all Flask apps.

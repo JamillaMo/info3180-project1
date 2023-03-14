@@ -8,6 +8,7 @@ This file contains the routes for your application.
 from app import app
 from flask import render_template, flash, request, redirect, url_for
 from .forms import MyForm, PhotoForm
+from .models import Property
 
 
 ###
@@ -51,7 +52,8 @@ def create():
 
 @app.route('/properties')
 def viewproperties():
-    return render_template('viewproperties.html')
+    properties = Property.query.all()
+    return render_template('viewproperties.html', properties=properties)
 
 @app.route('/properties/<propertyid>')
 def viewpropertyid():

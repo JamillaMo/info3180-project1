@@ -6,7 +6,8 @@ This file contains the routes for your application.
 """
 
 from app import app
-from flask import render_template, request, redirect, url_for
+from flask import render_template, flash, request, redirect, url_for
+from .forms import MyForm, PhotoForm
 
 
 ###
@@ -24,6 +25,36 @@ def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
 
+@app.route('/properties/create')
+def create():
+    if myform.validate_on_submit():
+            title = myform.title.data
+            desc = myform.desc.data
+            rooms = myform.rooms.data
+            bathrooms = myform.bathrooms.data
+            price = myform.price.data
+            prop_type = myform.prop_type.data
+            location = myform.location.data
+
+
+            flash('You have successfully filled out the form', 'success')
+
+    flash_errors(myform)
+    return render_template('addproperty.html', title=title,
+                                   desc=desc,
+                                   rooms=rooms,
+                                   bathrooms=bathrooms,
+                                   price=price,
+                                   prop_type=prop_type,
+                                   location=location)
+
+@app.route('/properties')
+def something():
+    pass
+
+@app.route('/properties/<propertyid>')
+def somethingelse():
+    pass
 
 ###
 # The functions below should be applicable to all Flask apps.
